@@ -1,0 +1,465 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+$desktop: 1000px;
+$ultrawide: 1800px;
+
+@mixin desktop {
+    @media (min-width: #{$desktop}) {
+        @content;
+    }
+}
+
+@mixin mobile {
+    @media (max-width: #{$desktop}) {
+        @content;
+    }
+}
+
+@mixin ultrawide {
+    @media (min-width: #{$ultrawide}) {
+        @content;
+    }
+}
+
+$colors: (
+    very-dark-blue: hsl(243, 87%, 12%),
+    desaturated-blue: hsl(238, 22%, 44%),
+    bright-blue: hsl(224, 93%, 58%),
+    moderate-cyan: hsl(170, 45%, 43%),
+    light-grayish-blue: hsl(240, 75%, 98%),
+    light-gray: hsl(0, 0%, 75%)
+);
+
+@function color ($color-name) {
+    @return map-get($colors, $color-name);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+h1, h2, .submit {
+    font-family: 'Raleway', sans-serif;
+}
+
+.text {
+    text-align: center;
+    @include desktop {
+        width: 50%;
+        text-align: left;
+    }
+    @include ultrawide {
+        font-size: 1.7rem;
+    }
+}
+
+input, button {
+    height: 40px;
+    @include ultrawide {
+        height: 60px;
+        font-size: 1.3rem;
+    }
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+body {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Open Sans', sans-serif;
+
+    .top-bar {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        padding: 45px 50px 0 50px;
+        margin-bottom: 50px;
+
+        img {
+            width: 120px;
+            @include ultrawide {
+                width: 240px;
+            }
+            object-fit: contain;
+        }
+
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+            li {
+                @include ultrawide {
+                    font-size: 1.5rem;
+                }
+                display: inline;
+                white-space: nowrap;
+                a {
+                    text-decoration: none;
+                    color: black;
+                    padding-left: 2rem;
+                }
+            }
+        }
+    }
+
+    section {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .illustration {
+            width: 90%;
+            @include desktop {
+                width: 50%;
+            }
+            object-fit: contain;
+        }
+        .column {
+            max-width: 600px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            @include desktop {
+                flex-direction: row-reverse;
+                max-width: 100%;
+            }
+        }
+    }
+    
+    // Get started section
+    .get-started {
+        
+        padding-left: 60px;
+        padding-right: 60px;
+        margin-bottom: 100px;
+        text-align: center;
+        .text {
+            /*
+            @include desktop {
+                width: 50%;
+                text-align: left;
+            }*/
+            form {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                @include desktop {
+                    flex-direction: row;
+                }
+                input {
+                    padding-left: 1rem;
+                    //height: 40px;
+                    margin-bottom: 1rem;
+                    border-radius: 6px;
+                    border-style: solid;
+                    border-color: black;
+                    border-width: 1px;
+                    @include desktop {
+                        flex-direction: row;
+                        margin-right: 1rem;
+                        width: 50%;
+                    }
+                }
+                button {
+                    //height: 40px;
+                    background-color: color(bright-blue);
+                    border-style: none;
+                    border-radius: 6px;
+                    color: white;
+                    font-weight: bold;
+                    @include desktop {
+                        flex-direction: row;
+                        margin-right: 1rem;
+                        width: 30%;
+                    }
+                }
+            }
+        }
+    }
+
+    .stay-productive {
+        padding-left: 40px;
+        padding-right: 40px;
+        background-color: color(light-grayish-blue);
+        position: relative;
+        margin-top: 120px;
+        .column
+        {
+            .illustration {
+                width: 50%;
+            }
+            .text {
+                text-align: left;
+                h2 {
+                    text-align: center;
+                    @include desktop {
+                        text-align: left;
+                    }
+                }
+
+            p {
+                color: color(desaturated-blue);
+            }
+
+            .testimonial {
+                background-color: white;
+                p {
+                    color: black;
+                }
+            }
+            .how-it-works {
+                width: fit-content;
+                margin-left: auto;
+                margin-right: auto;
+                border-style: solid;
+                border-top: transparent;
+                border-left: transparent;
+                border-right: transparent;
+                border-color: color(moderate-cyan);
+                border-width: 1px;
+                padding-bottom: 2px;
+                padding-right: 18px;
+                @include ultrawide {
+                    padding-right: 34px;
+                }
+                margin-bottom: 80px;
+                margin-top: 40px;
+                @include desktop {
+                    margin-left: 0;
+                    margin-right: 0;
+                }   
+
+                #how-it-works::after {
+                    background: url('../images/icon-arrow.svg') no-repeat;
+                    height: 22px;
+                    width: 22px;
+                    position: absolute;
+                    top: 4px;
+                    right: -26px;
+                    content: "";
+                    @include ultrawide {
+                        height: 32px;
+                        width: 32px;
+                        background-size: contain;
+                        right: -40px;
+                    }
+                }
+
+                #how-it-works {
+                    color: color(moderate-cyan);
+                    text-decoration: none;
+                    position: relative;
+                } 
+            }
+
+            .testimonial {
+                padding: 45px;
+                margin-bottom: 160px;
+                border-radius: 6px;
+                box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+                @include desktop {
+                    width: 60%;
+                }
+
+                p {
+                    line-height: 2rem;
+                }
+
+                .person-position {
+                    display: flex;
+                    align-items: center;
+                    img {
+                        border-radius: 50%;
+                        height: 48px;
+                        margin-right: 10px;
+                    }
+                    p {
+                        margin: 0;
+                        font-size: 0.8rem;
+                        @include ultrawide {
+                            font-size: 1rem;
+                        }
+                        line-height: 1rem;
+                        span {
+                            font-size: 1rem;
+                            @include ultrawide {
+                                font-size: 1.2rem;
+                            }
+                            font-weight: bold;
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+        &::before {
+            @include mobile {
+                background: url('/images/bg-curve-mobile.svg') no-repeat;
+                background-size: contain;
+                height: 220px;
+                width: 100%;
+                content: "";
+                position: absolute;
+                top:-14vw;
+                z-index: -1;
+            }
+            @include desktop {
+                background: url('/images/bg-curve-desktop.svg') no-repeat;
+                background-size: contain;
+                height: 220px;
+                width: 100%;
+                content: "";
+                position: absolute;
+                top:-7vw;
+                z-index: -1;
+            }
+        }
+    }
+
+    //Early access
+    .early-access {
+        background-color: color(desaturated-blue);
+        color: white;
+        padding: 40px;
+        @include desktop {
+            padding-left: 100px;
+            padding-right: 100px;
+        }
+        .column {
+
+            @include desktop {
+                flex-direction: row;
+                justify-content: space-between;
+                width: 100%;
+            }
+
+            .text {
+                @include desktop {
+                    width: 40%;
+                }
+            }
+            
+            form {
+                @include desktop {
+                    width: 40%;
+                }
+                width: 80%;
+                display: flex;
+                flex-direction: column;
+                input {
+                    padding-left: 1rem;
+                    //height: 40px;
+                    margin-bottom: 0.5rem;
+                    border-radius: 6px;
+                    border-style: none;
+                    border-color: black;
+                }
+                button {
+                    //height: 40px;
+                    background-color: color(bright-blue);
+                    border-style: none;
+                    border-radius: 6px;
+                    color: white;
+                    font-weight: bold;
+                    @include desktop {
+                        width: 40%;
+                    }
+                }
+            }
+        }
+    }
+
+    footer {
+        width: 100%;
+        background-color: color(very-dark-blue);
+        color: white;
+        padding: 40px;
+
+        @include desktop {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            column-gap: 10px;
+            row-gap: 10px;
+            padding-left: 100px;
+            padding-right: 100px;
+        }
+
+        @include ultrawide {
+            font-size: 1.5rem;
+        }
+
+        img {
+            grid-row-start: 1;
+            grid-row-end: 1;
+            grid-column-start: 1;
+            grid-column-end: 5;
+        }
+
+        .contacts {
+            padding-left: 30px;
+            li {
+                padding-bottom: 10px;
+            }
+            #phone {
+                list-style-image: url('/images/icon-phone.svg');
+            }
+            #fylo-email {
+                list-style-image: url('/images/icon-email.svg');
+            }
+        }
+
+        .about1, .about2 {
+            list-style: none;
+            padding: 0;
+            li {
+                padding-bottom: 20px;
+            }
+            @include desktop {
+                justify-self: center;
+            }
+        }
+
+        .social {
+            display: flex;
+            justify-content: space-evenly;
+            margin-bottom: 60px;
+            margin-top: 4rem;
+            width: 250px;
+            margin-left: auto;
+            margin-right: auto;
+            a {
+                color: white;
+                border-style: solid;
+                border-width: 1px;
+                border-color:white;
+                border-radius: 50%;
+                width: 34px;
+                height: 34px;
+                font-size: 1rem;
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
+                text-decoration: none;
+
+                @include ultrawide {
+                    font-size: 1.4rem;
+                    width: 54px;
+                    height: 54px;
+                    border-width: 2px;
+                }
+                
+                &:hover {
+                    color:blue;
+                    background-color: whitesmoke;
+                }
+            }
+        }
+    }
+}
